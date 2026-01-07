@@ -1,34 +1,26 @@
-// const form = document .getElementById("content-form");
-// const name = document .getElementById("name");
-// const email = document .getElementById("email");
-// const persons = document .getElementById("persons");
-// const data = document .getElementById("data");
-// const time = document .getElementById("time");
-// form .addEventListener("submit", function(e){
-//     console.log(name.value)
-// })
+const menuBtn = document.getElementById('menu-btn');
+const navLinks = document.getElementById('nav-links');
 
-// // Back to Top functionality
-// const backToTop = document.getElementById('backToTop');
+menuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
 
-// if (backToTop) {
-//     window.addEventListener('scroll', () => {
-//         if (window.scrollY > 300) {
-//             backToTop.style.display = 'flex';
-//             backToTop.style.opacity = '1';
-//         } else {
-//             backToTop.style.opacity = '0';
-//             setTimeout(() => {
-//                 if (window.scrollY <= 300) backToTop.style.display = 'none';
-//             }, 300);
-//         }
-//     });
+    // Toggle icon
+    const icon = menuBtn.querySelector('i');
+    if (navLinks.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+    } else {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+    }
+});
 
-//     backToTop.addEventListener('click', (e) => {
-//         e.preventDefault();
-//         window.scrollTo({
-//             top: 0,
-//             behavior: 'smooth'
-//         });
-//     });
-// }
+// Close menu when a link is clicked
+document.querySelectorAll('#nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        const icon = menuBtn.querySelector('i');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+    });
+});
